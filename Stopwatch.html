@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch</title>
+    <style>
+        *{margin:0px;
+padding:0px;
+box-sizing: border-box; }
+.box{
+    position:relative;
+width:300px;
+height:420px;
+border:1px solid rgb(113, 118, 133);
+    background-color:rgb(20, 99, 202);
+    margin:50px auto;  }
+.box h1{
+width:100%;height:180px;
+text-align: center;
+line-height: 180px; border-bottom: 1px solid   #ddd; }
+.box .controller{
+        display:flex;
+justify-content: space-between;position:absolute;     bottom:80px;
+padding:0px 30px 0px 30px; width:100%; }
+.controller button{
+  width:60px;
+ height:30px;}
+    </style>
+</head>
+<body>
+    <div class="box">
+      <h1>00:00:00</h1>
+        <div class="controller">    <button class="start">Start</button><button class="pause">Pause</button>
+     <button class="stop">End</button>
+
+
+        </div>
+    </div>
+    <script> let h1 = document.querySelector("h1");
+let start = document.querySelector(".start"); let pause = document.querySelector(".pause");
+let stop = document.querySelector(".stop");
+let h = 0,s = 0,m = 0,t = null;
+                 
+start.onclick = function(){
+clearInterval(t);
+ t = setInterval(() => {
+             ++m;
+         h1.innerHTML = `${h}:${s}:${m}`;
+     if(m == 59){
+  ++s;
+       if(s == 59){  ++h; s =0;}
+ m =0;}
+   },100)  }
+        
+ pause.onclick = function(){clearInterval(t);
+        }
+   stop.onclick = function(){ clearInterval(t);
+h = 0;
+    s = 0; m = 0;
+ h1.innerHTML = `${h}:${s}:${m}`;}
+</script>
+</body>
+</html>
